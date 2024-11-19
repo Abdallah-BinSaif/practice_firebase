@@ -3,6 +3,7 @@ import MainLayout from "../layouts/MainLayout.jsx";
 import Home from "../pages/Home.jsx";
 import Login from "../pages/Login.jsx";
 import SignUp from "../pages/SignUp.jsx";
+import Registration from "../pages/Registration.jsx";
 
 const route = createBrowserRouter([
     {
@@ -20,6 +21,10 @@ const route = createBrowserRouter([
             {
                 path: "/signup",
                 element: <SignUp></SignUp>,
+            },
+            {
+                path: "/registration",
+                element: <Registration></Registration>
             }
         ]
     }
