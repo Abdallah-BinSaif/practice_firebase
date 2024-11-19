@@ -5,6 +5,8 @@ import MainLayout from "../layouts/MainLayout.jsx";
 import Login from "../components/Login.jsx";
 import Home from "../components/Home.jsx";
 import Register from "../components/Register.jsx";
+import Orders from "../components/Orders.jsx";
+import PrivateRoute from "../layouts/PrivateRoute.jsx";
 
 const router = createBrowserRouter([
     {
@@ -22,6 +24,10 @@ const router = createBrowserRouter([
             {
                 path: "register",
                 element: <Register/>,
+            },
+            {
+                path: "order",
+                element: <PrivateRoute><Orders/></PrivateRoute>
             }
         ]
     },

@@ -1,13 +1,25 @@
-import React from 'react';
-import {NavLink} from "react-router-dom";
+import React, {useContext} from 'react';
+import {Link, NavLink} from "react-router-dom";
+import {AuthContext} from "../provider/AuthProvider.jsx";
 
 const Navbar = () => {
+    const {user,signOutUser} = useContext(AuthContext);
 
     const lists = <>
         <li><NavLink to={"/"}>Home</NavLink></li>
-        <li><NavLink to={"/login"}>Login</NavLink></li>
+        {
+            user ? "":
+            <li><NavLink to={"/login"}>Login</NavLink></li>
+        }
         <li><NavLink to={"/register"}>Register</NavLink></li>
+        {
+            user && <li><NavLink to={"/order"}>Order</NavLink></li>
+        }
     </>
+
+    const handleSignOut = () => {
+        signOutUser();
+    }
 
 
     return (
@@ -42,7 +54,13 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <a className="btn">Button</a>
+                {
+                    user ? <>
+                        <small>{user.email}</small>
+                        <a onClick={handleSignOut} className="btn ml-2">Sign Out</a>
+                    </> : <Link to={"/login"} className="btn">Login</Link>
+
+                }
             </div>
         </div>
     );

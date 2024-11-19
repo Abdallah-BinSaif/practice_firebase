@@ -1,12 +1,22 @@
-import React from 'react';
-import {NavLink} from "react-router-dom";
+import React, {useContext} from 'react';
+import {Navigate, NavLink} from "react-router-dom";
+import {AuthContext} from "../provider/AuthProvider.jsx";
 
 const Login = () => {
+    const {loginUser, user} = useContext(AuthContext);
     const handleLogin = (e) => {
+
         e.preventDefault()
         const email = e.target.email.value;
         const password = e.target.password.value;
         console.log(email, password)
+
+        loginUser(email, password).then(res => console.log(res.user)).catch(error => console.log(error))
+
+    }
+
+    if (user){
+        return <Navigate to={"/"}></Navigate>
     }
 
     return (
